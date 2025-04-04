@@ -12,7 +12,7 @@ export const menuItems: IMenuItem[] = [
   {
     text: 'Dashboard',
     icon: <TableChartIcon />,
-    url: '',
+    url: '/dashboard',
     items: [
 
     ],
@@ -20,7 +20,7 @@ export const menuItems: IMenuItem[] = [
   {
     text: 'Biblioteca',
     icon: <LibraryBooksIcon />,
-    url: '',
+    url: '/library',
     items: [
     ],
   },

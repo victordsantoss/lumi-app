@@ -2,12 +2,10 @@
 
 import { useState, useContext, useCallback, createContext } from "react"
 
-import { IMenuItem } from '@/components/layout/dashboard/items'
-
 
 interface MenuContextType {
-  selectedMenu: IMenuItem | null;
-  setSelectedMenu: (menu: IMenuItem) => void;
+  selectedMenu: string | null;
+  setSelectedMenu: (menu: string) => void;
 }
 
 const MenuContext = createContext<MenuContextType | undefined>(undefined)
@@ -15,9 +13,9 @@ const MenuContext = createContext<MenuContextType | undefined>(undefined)
 export const MenuProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [selectedMenu, setSelectedMenu] = useState<IMenuItem | null>(null)
+  const [selectedMenu, setSelectedMenu] = useState<string | null>(null)
 
-  const handleSetSelectedMenu = useCallback((menu: IMenuItem) => {
+  const handleSetSelectedMenu = useCallback((menu: string) => {
     setSelectedMenu(menu)
   }, [])
 

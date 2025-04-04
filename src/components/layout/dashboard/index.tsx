@@ -52,7 +52,7 @@ export default function MiniDrawer({ children }: { children: React.ReactNode }) 
           </IconButton>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Typography variant="h6" noWrap component="div">
-              {selectedMenu?.text ?? 'Dashboard'}
+              {selectedMenu ?? 'Dashboard'}
             </Typography>
           </Box>
         </Toolbar>
