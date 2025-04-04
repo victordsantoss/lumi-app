@@ -5,6 +5,7 @@ import {
 import { IDashboardViewProps } from './dashboard.types';
 import SummaryCard from './components/summary-card';
 import { Charts } from './components/charts';
+import { EmptyInvoices } from './components/empty-invoices';
 
 export const DashboardView = ({
   invoices,
@@ -13,6 +14,10 @@ export const DashboardView = ({
   totalCompensatedEnergy,
   totalElectricalEnergy,
 }: IDashboardViewProps) => {
+
+  if (!invoices?.data.length) {
+    return <EmptyInvoices onAddFirstInvoice={() => { }} />
+  }
 
   return (
     <Box display="flex" flexDirection="column" gap={2}>
