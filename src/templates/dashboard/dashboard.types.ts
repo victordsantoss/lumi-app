@@ -11,9 +11,5 @@ export interface IDashboardViewProps {
   totalCompensatedEnergy: number;
   totalElectricalEnergy: number;
   invoices: PaginatedResponse<Invoice>;
-  page: number;
-  rowsPerPage: number;
   isLoading?: boolean;
-  onPageChange: (event: unknown, newPage: number) => void;
-  onRowsPerPageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

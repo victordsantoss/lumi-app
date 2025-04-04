@@ -12,7 +12,7 @@ export interface IDashboardModel {
 }
 
 const calculateTotalInvoiceAmount = (invoices: Invoice[]): number => {
-  return invoices.reduce((total, invoice) => total + invoice.invoiceAmount, 0);
+  return invoices.reduce((total, invoice) => total + Number(invoice.invoiceAmount), 0);
 };
 
 const calculateAverageInvoiceAmount = (totalAmount: number, invoicesLength: number): number => {
@@ -20,11 +20,11 @@ const calculateAverageInvoiceAmount = (totalAmount: number, invoicesLength: numb
 };
 
 const calculateTotalCompensatedEnergy = (invoices: Invoice[]): number => {
-  return invoices.reduce((total, invoice) => total + invoice.compensatedEnergyQuantity, 0);
+  return invoices.reduce((total, invoice) => total + Number(invoice.compensatedEnergyQuantity), 0);
 };
 
 const calculateTotalElectricalEnergy = (invoices: Invoice[]): number => {
-  return invoices.reduce((total, invoice) => total + invoice.electricalEnergyQuantity, 0);
+  return invoices.reduce((total, invoice) => total + Number(invoice.electricalEnergyQuantity), 0);
 };
 
 export const useDashboardModel = (invoicesData: PaginatedResponse<Invoice>): IDashboardModel => {
