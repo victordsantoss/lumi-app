@@ -1,10 +1,10 @@
 import {
   Box,
-  Typography,
 } from '@mui/material';
 
 import { IDashboardViewProps } from './dashboard.types';
 import SummaryCard from './components/summary-card';
+import { Charts } from './components/charts';
 
 export const DashboardView = ({
   invoices,
@@ -14,9 +14,6 @@ export const DashboardView = ({
   totalElectricalEnergy,
 }: IDashboardViewProps) => {
 
-  console.log("invoices", invoices)
-
-
   return (
     <Box display="flex" flexDirection="column" gap={2}>
       <SummaryCard
@@ -24,9 +21,8 @@ export const DashboardView = ({
         averageInvoiceAmount={averageInvoiceAmount}
         totalCompensatedEnergy={totalCompensatedEnergy}
         totalElectricalEnergy={totalElectricalEnergy}
-        totalInvoices={invoices.data.length}
-      />
-      <Typography variant="h4">Dashboard</Typography>
+        totalInvoices={invoices?.data.length ?? 0} />
+      <Charts data={invoices?.data ?? []} />
     </Box>
 
   );
