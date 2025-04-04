@@ -24,7 +24,7 @@ export const DashboardView = ({
         averageInvoiceAmount={averageInvoiceAmount}
         totalCompensatedEnergy={totalCompensatedEnergy}
         totalElectricalEnergy={totalElectricalEnergy}
-        invoices={invoices}
+        totalInvoices={invoices.data.length}
       />
       <Typography variant="h4">Dashboard</Typography>
     </Box>
