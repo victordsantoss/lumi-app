@@ -48,11 +48,16 @@ export const BarChartComponent = ({ data }: IBarChartProps) => {
       <ResponsiveContainer width="100%" height={400}>
         <BarChart
           data={chartData}
+          margin={{ top: 25 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="month" />
           <YAxis tickFormatter={(value) => formatEnergy(value)} />
-          <Legend />
+          <Legend
+            layout="horizontal"
+            verticalAlign="bottom"
+            align="center"
+          />
           <Bar dataKey="consumo" fill="#8884d8" />
         </BarChart>
       </ResponsiveContainer>
