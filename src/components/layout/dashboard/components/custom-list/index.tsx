@@ -21,9 +21,9 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
 
 
   const handleToggleItem = (item: IMenuItem) => {
-    setOpen(true);
     setSelectedMenu(item.text);
     router.push(item.url);
+    setOpen(true);
   };
 
   return (
