@@ -1,48 +1,32 @@
-'use client'
+import { PaginatedResponse } from '@/common/dtos/base-pagination.dto';
+import { IFetchSuccessResponse } from '@/common/dtos/fetch.dto';
+import { IFetchErrorResponse } from '@/common/dtos/fetch.dto';
+import { Invoice } from '@/common/models/invoice.model';
+import { apiFetch, handleApiError } from '@/configs/api/fetch';
+import DashboardViewModel from '@/templates/dashboard/dashboard.view-model';
 
+export type IInvoiceResponseDto = PaginatedResponse<Invoice>
 
-import { useState } from 'react';
+export type InvoicesResponse =
+  | IFetchSuccessResponse<IInvoiceResponseDto>
+  | IFetchErrorResponse
 
-export default function Home() {
-  const [selectedFile, setSelectedFile] = useState(null);
+export default async function Dashboard() {
 
-  const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
-  };
+  const listInvoicesEndpoint = `/invoice`;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!selectedFile) return;
+  const [invoices] = await Promise.all([
+    await apiFetch<InvoicesResponse>(listInvoicesEndpoint, {
+      method: 'GET',
+      next: {
+        tags: ['list-invoices'],
+      },
+      cache: 'no-cache',
+    })
+  ])
 
-    const formData = new FormData();
-    formData.append('file', selectedFile);
+  const invoicesData = handleApiError<IInvoiceResponseDto>(invoices);
 
-    try {
-      const res = await fetch('/api/parse-pdf', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!res.ok) {
-        console.error('Erro ao enviar arquivo');
-        return;
-      }
-
-      const data = await res.json();
-      // Imprime os dados extraídos no console do navegador
-      console.log('Conteúdo do PDF:', data.text);
-    } catch (error) {
-      console.error('Erro:', error);
-    }
-  };
-
-  return (
-    <div>
-      <h1>Upload de PDF</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="file" accept="application/pdf" onChange={handleFileChange} />
-        <button type="submit">Enviar</button>
-      </form>
-    </div>
-  );
+  return <DashboardViewModel invoicesData={invoicesData} />;
 }
+
