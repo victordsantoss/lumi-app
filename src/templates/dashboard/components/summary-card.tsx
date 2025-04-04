@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { IDashboardViewProps } from '../dashboard.types';
 import { useTheme } from '@mui/material/styles';
+import { formatCurrency, formatEnergy } from '@/common/utils/format';
 
 
 export interface ISummaryCardProps extends IDashboardViewProps {
@@ -42,13 +43,10 @@ export const SummaryPaper = ({ title, value, isCurrency, isEnergy }: ISummaryPap
   const theme = useTheme();
   const formatValue = () => {
     if (isCurrency) {
-      return new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-      }).format(value);
+      return formatCurrency(value);
     }
     if (isEnergy) {
-      return `${value.toLocaleString('pt-BR')} kWh`;
+      return formatEnergy(value);
     }
     return value;
   };

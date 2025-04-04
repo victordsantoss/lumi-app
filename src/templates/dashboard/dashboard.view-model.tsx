@@ -9,8 +9,8 @@ const DashboardViewModel = ({ invoicesData }: IDashboardViewModelProps) => {
   return (
     <DashboardView
       {...methods}
-    >
-    </DashboardView>
+    />
+
   );
 };
 
