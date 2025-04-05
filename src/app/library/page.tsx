@@ -10,22 +10,26 @@ export type InvoicesResponse =
   | IFetchSuccessResponse<IInvoiceResponseDto>
   | IFetchErrorResponse
 
-export default async function Library() {
-
+export default async function Library({
+  searchParams,
+}: {
+  searchParams: Record<string, string>
+}) {
   const listInvoicesEndpoint = `/invoice`;
 
   const [invoices] = await Promise.all([
     await apiFetch<InvoicesResponse>(listInvoicesEndpoint, {
       method: 'GET',
       next: {
-        tags: ['list-invoices'],
+        tags: ['list-dashboard-invoices'],
       },
       cache: 'no-cache',
-    })
+    },
+      searchParams
+    )
   ])
 
   const invoicesData = handleApiError<IInvoiceResponseDto>(invoices);
-
 
   return <LibraryViewModel invoicesData={invoicesData} />;
 }

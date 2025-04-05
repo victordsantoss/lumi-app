@@ -1,22 +1,18 @@
 'use client';
 
-import { PaginatedResponse } from "@/common/dtos/base-pagination.dto";
 import { Invoice } from "@/common/models/invoice.model";
 import { formatCurrency, formatEnergy } from "@/common/utils/format";
 import { Box, IconButton, Tooltip } from '@mui/material';
 import { GridColDef } from "@mui/x-data-grid";
 import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { useState } from "react";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 export interface ITableModel {
-  tableData: PaginatedResponse<Invoice>;
   columns: GridColDef<Invoice>[];
 }
 
-export const useTableModel = (initialTableData: PaginatedResponse<Invoice>): ITableModel => {
-  const [tableData] = useState<PaginatedResponse<Invoice>>(initialTableData);
+export const useTableModel = (): ITableModel => {
 
   const columns: GridColDef<Invoice>[] = [
     {
@@ -42,7 +38,7 @@ export const useTableModel = (initialTableData: PaginatedResponse<Invoice>): ITa
       flex: 2,
       headerName: 'Valor da fatura',
       renderCell: (params) => (
-        formatCurrency(params.row.invoiceAmount)
+        formatCurrency(params.row?.invoiceAmount ?? 0)
       ),
       sortable: true,
     },
@@ -51,7 +47,7 @@ export const useTableModel = (initialTableData: PaginatedResponse<Invoice>): ITa
       flex: 2,
       headerName: 'Mês da fatura',
       renderCell: (params) => (
-        format(parseISO(params.row.invoiceMonth), 'MMMM yyyy', { locale: ptBR }).toUpperCase()
+        format(parseISO(params.row?.invoiceMonth), 'MMMM yyyy', { locale: ptBR }).toUpperCase()
       ),
       sortable: true,
     },
@@ -80,7 +76,7 @@ export const useTableModel = (initialTableData: PaginatedResponse<Invoice>): ITa
       renderCell: (params) => (
         <Box>
           <Tooltip title="Visualizar fatura" arrow>
-            <IconButton color="primary">
+            <IconButton color="primary" onClick={() => console.log(params.row)}>
               <PictureAsPdfIcon />
             </IconButton>
           </Tooltip>
@@ -90,7 +86,6 @@ export const useTableModel = (initialTableData: PaginatedResponse<Invoice>): ITa
   ];
 
   return {
-    tableData,
     columns,
   };
 };

@@ -9,6 +9,7 @@ export const apiFetch = async <T>(
 
   const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}${endpoint}`)
 
+
   if (queryParams) {
     Object.entries(queryParams).forEach(([key, value]) => {
       if (value !== undefined) {

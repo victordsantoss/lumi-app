@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { IInputValues } from "./filter.types";
 import { debounce } from 'lodash';
+import { revalidateInvoices } from "@/common/actions/revalidate-invoices";
 
 export interface IFilterModel {
   inputValues: IInputValues
@@ -36,7 +37,7 @@ export const useFilterModel = (): IFilterModel => {
     setInputValues((prev) => ({ ...prev, [field]: value }))
   }
 
-  const handleParamChange = (value: string | null, paramName: string) => {
+  const handleParamChange = async (value: string | null, paramName: string) => {
     const params = new URLSearchParams(searchParams.toString())
     if (!value) {
       params.delete(paramName)
@@ -50,7 +51,10 @@ export const useFilterModel = (): IFilterModel => {
     handleParamChange(value || '', paramName)
   }
 
-  const debouncedFiltereText = debounce((query: string, paramName: string) => onTextChange(query, paramName), 500)
+  const debouncedFiltereText = debounce((query: string, paramName: string) => {
+    onTextChange(query, paramName)
+    revalidateInvoices()
+  }, 500)
 
   const clearAllFilters = () => {
     const params = new URLSearchParams(searchParams.toString())
@@ -91,6 +95,7 @@ export const useFilterModel = (): IFilterModel => {
 
   useEffect(() => {
     getFilterChips()
+    revalidateInvoices()
   }, [getFilterChips, searchParams])
 
   return {
