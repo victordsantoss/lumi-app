@@ -125,3 +125,5 @@ A aplicação segue o padrão Model-View-ViewModel (MVVM) para melhor organizaç
 - Transforma dados do Model para a View
 - Exemplo: `filter.viewmodel.ts`
 
+## 🏗️ Exemplo de .env
+NEXT_PUBLIC_API_URL=http://localhost:3001
