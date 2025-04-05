@@ -15,7 +15,7 @@ export const DashboardView = ({
   totalElectricalEnergy,
 }: IDashboardViewProps) => {
 
-  if (!invoices?.data.length) {
+  if (!invoices?.length) {
     return <EmptyInvoices onAddFirstInvoice={() => { }} />
   }
 
@@ -26,8 +26,8 @@ export const DashboardView = ({
         averageInvoiceAmount={averageInvoiceAmount}
         totalCompensatedEnergy={totalCompensatedEnergy}
         totalElectricalEnergy={totalElectricalEnergy}
-        totalInvoices={invoices?.data.length ?? 0} />
-      <Charts data={invoices?.data ?? []} />
+        totalInvoices={invoices?.length ?? 0} />
+      <Charts data={invoices ?? []} />
     </Box>
 
   );

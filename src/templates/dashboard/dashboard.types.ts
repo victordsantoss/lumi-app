@@ -10,6 +10,6 @@ export interface IDashboardViewProps {
   averageInvoiceAmount: number;
   totalCompensatedEnergy: number;
   totalElectricalEnergy: number;
-  invoices?: PaginatedResponse<Invoice>;
+  invoices?: Invoice[];
   isLoading?: boolean;
 }

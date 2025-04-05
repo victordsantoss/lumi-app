@@ -17,7 +17,7 @@ export const Charts = ({ data }: IChartsProps) => {
       width: '100%'
     }}>
       <Card sx={{
-        backgroundColor: 'black',
+        backgroundColor: 'primary.main',
         flex: 1,
         width: '50%'
       }}>
@@ -26,7 +26,7 @@ export const Charts = ({ data }: IChartsProps) => {
         </CardContent>
       </Card>
       <Card sx={{
-        backgroundColor: 'black',
+        backgroundColor: 'primary.main',
         flex: 1,
         width: '50%'
       }}>

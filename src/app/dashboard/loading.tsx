@@ -9,7 +9,6 @@ export default function Loading() {
       p: 2,
       width: '100%'
     }}>
-      {/* Skeleton para o SummaryCard */}
       <Box sx={{ display: 'flex', gap: 2 }}>
         {[...Array(4)].map((_, index) => (
           <Skeleton
@@ -25,7 +24,6 @@ export default function Loading() {
         ))}
       </Box>
 
-      {/* Skeleton para os gráficos */}
       <Box sx={{ display: 'flex', gap: 4 }}>
         <Skeleton
           variant="rectangular"
@@ -47,7 +45,6 @@ export default function Loading() {
         />
       </Box>
 
-      {/* Skeleton para a tabela */}
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <Skeleton
           variant="text"
