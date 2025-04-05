@@ -12,10 +12,9 @@ import { useRouter } from 'next/navigation';
 
 interface ICustomListProps {
   open: boolean;
-  setOpen: (open: boolean) => void;
 }
 
-const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
+const CustomList: React.FC<ICustomListProps> = ({ open }) => {
   const router = useRouter();
   const { selectedMenu, setSelectedMenu } = useMenu();
 
@@ -23,7 +22,6 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
   const handleToggleItem = (item: IMenuItem) => {
     setSelectedMenu(item.text);
     router.push(item.url);
-    setOpen(true);
   };
 
   return (

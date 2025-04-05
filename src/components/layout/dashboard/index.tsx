@@ -72,7 +72,7 @@ export default function MiniDrawer({ children }: { children: React.ReactNode }) 
           </IconButton>
         </Box>
         <Divider sx={{ backgroundColor: theme.palette.primary.contrastText }} />
-        <CustomList open={open} setOpen={setOpen} />
+        <CustomList open={open} />
         <Box sx={miniDrawerStyles.logoContainer(open)}>
           <Image
             src="/lumi-logo.jpeg"
