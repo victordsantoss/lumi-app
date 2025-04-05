@@ -10,26 +10,18 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { useEffect, useState } from "react";
 import { PaginatedResponse } from "@/common/dtos/base-pagination.dto";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useFile } from "@/components/upload-invoice-modal/useFile";
 
 
 export interface ITableModelProps {
   tableData: PaginatedResponse<Invoice>
 }
-export interface ITableModel {
-  columns: GridColDef<Invoice>[];
-  currentLimit: number;
-  setCurrentLimit: (limit: number) => void;
-  currentPage: number;
-  setCurrentPage: (page: number) => void;
-  sortModel: GridSortModel;
-  handleSortModel: (sortModel: GridSortModel) => void;
-  handleAddNewInvoice: () => void;
-}
 
-export const useTableModel = ({ tableData }: ITableModelProps): ITableModel => {
+export const useTableModel = ({ tableData }: ITableModelProps) => {
   const searchParams = useSearchParams()
   const pathname = usePathname()
-  const { replace, push } = useRouter()
+  const { replace } = useRouter()
+  const { downloadPdf } = useFile()
   const [currentPage, setCurrentPage] = useState<number>(tableData.page ?? 1)
   const [currentLimit, setCurrentLimit] = useState<number>(tableData.limit ?? 10)
   const [sortModel, setSortModel] = useState<GridSortModel>([
@@ -116,8 +108,8 @@ export const useTableModel = ({ tableData }: ITableModelProps): ITableModel => {
             <IconButton
               color="primary"
               onClick={() => {
-                if (params.row?.id) {
-                  console.log(params.row)
+                if (params.row?.file?.buffer) {
+                  downloadPdf(params.row.file.buffer, params.row.file.name)
                 }
               }}
               disabled={!params.row?.id}
@@ -162,11 +154,6 @@ export const useTableModel = ({ tableData }: ITableModelProps): ITableModel => {
     }
 
   }
-
-  const handleAddNewInvoice = () => {
-    push('/library/new')
-  }
-
   return {
     columns,
     currentLimit,
@@ -175,6 +162,5 @@ export const useTableModel = ({ tableData }: ITableModelProps): ITableModel => {
     setCurrentPage,
     sortModel,
     handleSortModel,
-    handleAddNewInvoice
   };
 };

@@ -10,8 +10,10 @@ import DashboardLayoutComponent from '@/components/layout/dashboard';
 export const metadata = {
   title: 'Lumi - Gerenciamento a sua energia.',
   description: 'Impulsionando os seus negócios, gerenciamento a sua energia.',
-}
-
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
 export default function RootLayout({
   children,
 }: {
@@ -19,6 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body>
         <ThemeProvider theme={defaultTheme}>
           <CssBaseline />

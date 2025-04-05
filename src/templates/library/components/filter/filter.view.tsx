@@ -1,11 +1,11 @@
 import { Box, IconButton, Grid, InputAdornment, Tooltip, TextField, Button, Collapse, Divider } from "@mui/material";
 import { IInputValues } from "./filter.types";
-import { Close } from '@mui/icons-material'
+import { Close, Upload } from '@mui/icons-material'
 import ExpandLessOutlinedIcon from '@mui/icons-material/ExpandLessOutlined'
 import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined'
 import { AdvancedFilter } from "./advanced-filter";
 import { FilterChip } from "@/components/filter-chip";
-import AddIcon from '@mui/icons-material/Add';
+import { UploadInvoiceModal } from "@/components/upload-invoice-modal";
 
 interface IFilterViewProps {
   inputValues: IInputValues
@@ -16,9 +16,22 @@ interface IFilterViewProps {
   chips: Array<{ key: string; value: string }>
   clearAllFilters: () => void
   handleDeleteFilter: (field: string) => void
+  uploadModalOpen: boolean
+  setUploadModalOpen: (open: boolean) => void
 }
 
-export const FilterView = ({ inputValues, handleInputChange, debouncedFiltereText, filterIsOpen, setFilterIsOpen, chips, clearAllFilters, handleDeleteFilter }: IFilterViewProps) => {
+export const FilterView = ({
+  inputValues,
+  handleInputChange,
+  debouncedFiltereText,
+  filterIsOpen,
+  setFilterIsOpen,
+  chips,
+  clearAllFilters,
+  handleDeleteFilter,
+  uploadModalOpen,
+  setUploadModalOpen,
+}: IFilterViewProps) => {
   return (
     <Box
       display="flex"
@@ -28,22 +41,8 @@ export const FilterView = ({ inputValues, handleInputChange, debouncedFiltereTex
       sx={{ py: 1 }}
       flex={1}
     >
-      <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<AddIcon />}
-          onClick={() => console.log('Adicionar nova fatura')}
-          sx={{
-            height: 40,
-            fontWeight: 500,
-          }}
-        >
-          Nova Fatura
-        </Button>
-      </Box>
       <Grid container spacing={2} alignItems="center">
-        <Grid item xs={12} md={10}>
+        <Grid item xs={12} md={8}>
           <TextField
             label="Numero do cliente"
             fullWidth
@@ -108,6 +107,25 @@ export const FilterView = ({ inputValues, handleInputChange, debouncedFiltereTex
             Filtros Avançados
           </Button>
         </Grid>
+
+        <Grid item xs={12} md={2}>
+          <Button
+            color="primary"
+            variant="contained"
+            fullWidth
+            sx={{
+              height: 56,
+              display: 'flex',
+              alignItems: 'center',
+              fontWeight: 500,
+              gap: 1,
+            }}
+            onClick={() => setUploadModalOpen(true)}
+            startIcon={<Upload />}
+          >
+            Importar
+          </Button>
+        </Grid>
       </Grid>
       <Collapse in={filterIsOpen} timeout="auto">
         <AdvancedFilter
@@ -132,6 +150,10 @@ export const FilterView = ({ inputValues, handleInputChange, debouncedFiltereTex
           </>
         ) : null}
       </Box>
+      <UploadInvoiceModal
+        open={uploadModalOpen}
+        onClose={() => setUploadModalOpen(false)}
+      />
     </Box>
   );
 };

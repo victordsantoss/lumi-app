@@ -1,4 +1,5 @@
 import { Customer } from './customer.model';
+import { File } from './file.model';
 
 export interface Invoice {
   id: string;
@@ -17,4 +18,5 @@ export interface Invoice {
   updatedAt: Date;
   deletedAt: Date;
   customer: Customer;
+  file?: File
 }

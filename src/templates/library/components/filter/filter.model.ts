@@ -5,24 +5,13 @@ import { IInputValues } from "./filter.types";
 import { debounce } from 'lodash';
 import { revalidateInvoices } from "@/common/actions/revalidate-invoices";
 
-export interface IFilterModel {
-  inputValues: IInputValues
-  setInputValues: (values: IInputValues) => void
-  handleInputChange: (field: string, value?: string) => void
-  debouncedFiltereText: (query: string, paramName: string) => void
-  filterIsOpen: boolean
-  setFilterIsOpen: (isOpen: boolean) => void
-  clearAllFilters: () => void
-  chips: Array<{ key: string; value: string }>
-  handleDeleteFilter: (field: string) => void
-}
-
-
-export const useFilterModel = (): IFilterModel => {
+export const useFilterModel = () => {
   const searchParams = useSearchParams()
   const { replace } = useRouter()
   const pathname = usePathname()
-  const [filterIsOpen, setFilterIsOpen] = useState(false)
+  const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false)
+  const [uploadModalOpen, setUploadModalOpen] = useState<boolean>(false)
+
   const [chips, setChips] = useState<Array<{ key: string; value: string }>>([])
 
   const [inputValues, setInputValues] = useState<IInputValues>({
@@ -113,6 +102,8 @@ export const useFilterModel = (): IFilterModel => {
     setFilterIsOpen,
     clearAllFilters,
     chips,
-    handleDeleteFilter
+    handleDeleteFilter,
+    uploadModalOpen,
+    setUploadModalOpen,
   };
 };

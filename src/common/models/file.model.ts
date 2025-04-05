@@ -1,6 +1,8 @@
 import { Invoice } from './invoice.model';
-export interface IFile {
+export interface File {
   id: string;
+  name: string;
+  size: number;
   buffer: Buffer;
   createdAt: Date;
   updatedAt: Date;
