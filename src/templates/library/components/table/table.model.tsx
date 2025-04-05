@@ -2,18 +2,39 @@
 
 import { Invoice } from "@/common/models/invoice.model";
 import { formatCurrency, formatEnergy } from "@/common/utils/format";
-import { Box, IconButton, Tooltip } from '@mui/material';
-import { GridColDef } from "@mui/x-data-grid";
-import { format, parseISO } from "date-fns";
+import { Box, IconButton, Tooltip, Typography } from '@mui/material';
+import { GridColDef, GridSortModel } from "@mui/x-data-grid";
+import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import { useEffect, useState } from "react";
+import { PaginatedResponse } from "@/common/dtos/base-pagination.dto";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
+
+export interface ITableModelProps {
+  tableData: PaginatedResponse<Invoice>
+}
 export interface ITableModel {
   columns: GridColDef<Invoice>[];
+  currentLimit: number;
+  setCurrentLimit: (limit: number) => void;
+  currentPage: number;
+  setCurrentPage: (page: number) => void;
+  sortModel: GridSortModel;
+  handleSortModel: (sortModel: GridSortModel) => void;
+  handleAddNewInvoice: () => void;
 }
 
-export const useTableModel = (): ITableModel => {
-
+export const useTableModel = ({ tableData }: ITableModelProps): ITableModel => {
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const { replace, push } = useRouter()
+  const [currentPage, setCurrentPage] = useState<number>(tableData.page ?? 1)
+  const [currentLimit, setCurrentLimit] = useState<number>(tableData.limit ?? 10)
+  const [sortModel, setSortModel] = useState<GridSortModel>([
+    { field: 'movementDate', sort: 'desc' },
+  ])
   const columns: GridColDef<Invoice>[] = [
     {
       field: 'customer.number',
@@ -22,7 +43,6 @@ export const useTableModel = (): ITableModel => {
       renderCell: (params) => (
         params.row.customer.number
       ),
-      sortable: true,
     },
     {
       field: 'installationNumber',
@@ -31,7 +51,6 @@ export const useTableModel = (): ITableModel => {
       renderCell: (params) => (
         params.row.installationNumber
       ),
-      sortable: true,
     },
     {
       field: 'invoiceAmount',
@@ -40,37 +59,37 @@ export const useTableModel = (): ITableModel => {
       renderCell: (params) => (
         formatCurrency(params.row?.invoiceAmount ?? 0)
       ),
-      sortable: true,
+    },
+    {
+      field: 'eletricalEnergyQuantity',
+      headerName: 'Qtd de Energia elétrica',
+      flex: 2,
+      renderCell: (params) => (
+        formatEnergy(params.row.electricalEnergyQuantity)
+      ),
+
     },
     {
       field: 'invoiceMonth',
       flex: 2,
       headerName: 'Mês da fatura',
       renderCell: (params) => (
-        format(parseISO(params.row?.invoiceMonth), 'MMMM yyyy', { locale: ptBR }).toUpperCase()
+        <Typography textTransform={'capitalize'}> {format(params.row?.invoiceMonth, 'MMMM yyyy', { locale: ptBR })}</Typography>
       ),
-      sortable: true,
+      sortable: false,
+
     },
     {
-      field: 'eletricalEnergyQuantity',
-      headerName: 'Energia elétrica',
+      field: 'invoiceDueDate',
       flex: 2,
+      headerName: 'Mês de vencimento fatura',
       renderCell: (params) => (
-        formatEnergy(params.row.electricalEnergyQuantity)
+        <Typography textTransform={'capitalize'}> {format(params.row?.invoiceDueDate, 'MMMM yyyy', { locale: ptBR })}</Typography>
       ),
-      sortable: true,
+      sortable: false,
     },
     {
-      flex: 2,
-      field: 'invoiceAmount',
-      headerName: 'Valor da fatura',
-      renderCell: (params) => (
-        formatCurrency(params.row.invoiceAmount)
-      ),
-      sortable: true,
-    },
-    {
-      flex: 2,
+      flex: 1,
       field: 'actions',
       headerName: 'Ações',
       renderCell: (params) => (
@@ -85,7 +104,51 @@ export const useTableModel = (): ITableModel => {
     },
   ];
 
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString())
+
+    params.set('page', currentPage?.toString())
+    params.set('limit', currentLimit?.toString())
+
+    const newUrl = `${pathname}?${params.toString()}`
+    const currentUrl = `${pathname}?${searchParams.toString()}`
+    if (newUrl !== currentUrl) {
+      replace(newUrl)
+    }
+  }, [currentPage, currentLimit, searchParams, pathname, replace])
+
+  const handleSortModel = (model: GridSortModel) => {
+    const params = new URLSearchParams(searchParams.toString())
+    if (model.length === 0) {
+      params.delete('orderBy')
+      params.delete('orderDirection')
+    } else {
+      params.set('orderBy', model[0].field)
+      params.set('orderDirection', model[0].sort?.toUpperCase() ?? '')
+    }
+
+    setSortModel(model)
+    const newUrl = `${pathname}?${params.toString()}`
+    const currentUrl = `${pathname}?${searchParams.toString()}`
+
+    if (newUrl !== currentUrl) {
+      replace(newUrl, { scroll: false })
+    }
+
+  }
+
+  const handleAddNewInvoice = () => {
+    push('/library/new')
+  }
+
   return {
     columns,
+    currentLimit,
+    setCurrentLimit,
+    currentPage,
+    setCurrentPage,
+    sortModel,
+    handleSortModel,
+    handleAddNewInvoice
   };
 };

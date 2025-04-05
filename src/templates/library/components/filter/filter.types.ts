@@ -1,6 +1,6 @@
 export interface IInputValues {
   customerNumber: string
-  instalationNumber: string
+  installationNumber: string
   startDate: string | null
   endDate: string | null
 }

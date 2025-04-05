@@ -27,7 +27,7 @@ export const useFilterModel = (): IFilterModel => {
 
   const [inputValues, setInputValues] = useState<IInputValues>({
     customerNumber: searchParams.get('customerNumber') ?? '',
-    instalationNumber: searchParams.get('instalationNumber') ?? '',
+    installationNumber: searchParams.get('installationNumber') ?? '',
     startDate: searchParams.get('startDate') ?? '',
     endDate: searchParams.get('endDate') ?? ''
   })
@@ -59,9 +59,15 @@ export const useFilterModel = (): IFilterModel => {
   const clearAllFilters = () => {
     const params = new URLSearchParams(searchParams.toString())
     params.delete('customerNumber')
-    params.delete('instalationNumber')
+    params.delete('installationNumber')
     params.delete('startDate')
     params.delete('endDate')
+    setInputValues({
+      customerNumber: '',
+      installationNumber: '',
+      startDate: '',
+      endDate: ''
+    })
     const newUrl = `${pathname}${params.toString() ? `?${params.toString()}` : ''}`
     replace(newUrl)
   }

@@ -15,11 +15,9 @@ export default function TableSkeleton() {
   return (
     <Stack spacing={1} sx={{ width: '100%' }}>
       <Skeleton variant="text" sx={{ fontSize: '2rem' }} width={300} />
-
       <Stack justifyContent="end" direction={{ xs: 'row' }}>
         <Skeleton variant="text" sx={{ fontSize: '2rem' }} width={200} />
       </Stack>
-
       <Stack direction={{ xs: 'row' }} gap={2}>
         {rectangularSkeletons.map((_, i) => (
           <Skeleton

@@ -10,14 +10,13 @@ interface ITableViewModelProps {
 }
 
 export const TableViewModel = ({ tableData }: ITableViewModelProps) => {
-  const methods = useTableModel();
+  const methods = useTableModel({ tableData });
 
   return (
     <div>
       <TableView
         tableData={tableData}
-        {...methods}
-      />
+        {...methods} />
     </div>
   );
 };

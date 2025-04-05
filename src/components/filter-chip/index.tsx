@@ -12,6 +12,10 @@ export const FilterChip = ({ label, field, handleDelete }: FilterChipProps) => {
       label={label}
       variant="outlined"
       onDelete={() => handleDelete(field)}
+      sx={(theme) => ({
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
+      })}
     />
   )
 }

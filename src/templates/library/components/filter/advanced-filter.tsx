@@ -40,10 +40,10 @@ export const AdvancedFilter = ({
           <TextField
             label="Numero da instalação"
             fullWidth
-            value={inputValues.instalationNumber}
+            value={inputValues.installationNumber}
             onChange={(e) => {
-              handleInputChange('instalationNumber', e.target.value)
-              debouncedFiltereText(e.target.value, 'instalationNumber')
+              handleInputChange('installationNumber', e.target.value)
+              debouncedFiltereText(e.target.value, 'installationNumber')
             }}
             placeholder="Ex: 1231321D"
             sx={(theme) => ({
@@ -61,13 +61,13 @@ export const AdvancedFilter = ({
               },
             })}
             InputProps={{
-              endAdornment: inputValues.instalationNumber ? (
+              endAdornment: inputValues.installationNumber ? (
                 <InputAdornment position="end">
                   <Tooltip arrow title="Limpar texto de busca" placement="top">
                     <IconButton
                       onClick={() => {
-                        handleInputChange('instalationNumber', '')
-                        debouncedFiltereText('', 'instalationNumber')
+                        handleInputChange('installationNumber', '')
+                        debouncedFiltereText('', 'installationNumber')
                       }}
                     >
                       <Close />

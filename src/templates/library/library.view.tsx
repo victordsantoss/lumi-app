@@ -9,7 +9,7 @@ export const LibraryView = ({ invoices }: ILibraryViewProps) => {
   return (
     <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
       <FilterViewModel />
-      {invoices.data && <TableViewModel tableData={invoices} />}
+      <TableViewModel tableData={invoices} />
     </Box>
   );
 };

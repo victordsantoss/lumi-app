@@ -5,6 +5,7 @@ import ExpandLessOutlinedIcon from '@mui/icons-material/ExpandLessOutlined'
 import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined'
 import { AdvancedFilter } from "./advanced-filter";
 import { FilterChip } from "@/components/filter-chip";
+import AddIcon from '@mui/icons-material/Add';
 
 interface IFilterViewProps {
   inputValues: IInputValues
@@ -17,7 +18,6 @@ interface IFilterViewProps {
   handleDeleteFilter: (field: string) => void
 }
 
-
 export const FilterView = ({ inputValues, handleInputChange, debouncedFiltereText, filterIsOpen, setFilterIsOpen, chips, clearAllFilters, handleDeleteFilter }: IFilterViewProps) => {
   return (
     <Box
@@ -28,6 +28,20 @@ export const FilterView = ({ inputValues, handleInputChange, debouncedFiltereTex
       sx={{ py: 1 }}
       flex={1}
     >
+      <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<AddIcon />}
+          onClick={() => console.log('Adicionar nova fatura')}
+          sx={{
+            height: 40,
+            fontWeight: 500,
+          }}
+        >
+          Nova Fatura
+        </Button>
+      </Box>
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} md={10}>
           <TextField
