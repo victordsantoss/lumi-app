@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lumi Frontend
 
-## Getting Started
+Aplicação frontend para gerenciamento de faturas, desenvolvida com Next.js e seguindo o padrão MVVM.
 
-First, run the development server:
+## 🚀 Tecnologias
 
+- **Framework**: Next.js 14
+- **Linguagem**: TypeScript
+- **Estilização**: Material-UI (MUI)
+- **Gerenciamento de Estado**: React Query
+- **Formulários**: React Hook Form
+- **Linting**: ESLint
+- **Formatação**: Prettier
+
+## 📸 Screenshots
+
+### Página Principal
+![Página Principal](/screenshots/main-page.png)
+
+### Modal de Upload
+![Modal de Upload](/screenshots/upload-modal.png)
+
+### Filtros Avançados
+![Filtros Avançados](/screenshots/advanced-filters.png)
+
+## 🛠️ Como Rodar
+
+### Pré-requisitos
+- Node.js (versão 18 ou superior)
+- npm ou yarn
+- Variáveis de ambiente configuradas (ver `.env.example`)
+
+### Instalação
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone o repositório
+git clone https://github.com/seu-usuario/lumi-frontend.git
+
+# Entre no diretório
+cd lumi-frontend
+
+# Instale as dependências
+npm install
+# ou
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Desenvolvimento
+```bash
+# Inicie o servidor de desenvolvimento
+npm run dev
+# ou
+yarn dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build
+```bash
+# Crie uma build de produção
+npm run build
+# ou
+yarn build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Testes
+```bash
+# Execute os testes
+npm run test
+# ou
+yarn test
+```
 
-## Learn More
+## 📁 Estrutura de Pastas
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── components/         # Componentes reutilizáveis
+├── configs/           # Configurações da aplicação
+├── contexts/          # Contextos do React
+├── hooks/             # Hooks personalizados
+├── services/          # Serviços de API
+├── templates/         # Templates de páginas
+│   └── library/       # Template da biblioteca
+│       ├── components/ # Componentes específicos
+│       │   ├── filter/ # Exemplo de componente com MVVM
+│       │   │   ├── filter.model.ts      # Lógica de negócio e estado
+│       │   │   ├── filter.view.tsx      # Interface do usuário
+│       │   │   ├── filter.viewmodel.ts  # Lógica de apresentação
+│       │   │   ├── filter.types.ts      # Definições de tipos que são usados em lugares diferentes
+│       │   │   └── index.ts             # Exportação do componente
+│       │   └── upload-invoice-modal/    # Outro exemplo de componente
+│       │       ├── upload-invoice.model.ts
+│       │       ├── upload-invoice.view.tsx
+│       │       ├── upload-invoice.viewmodel.ts
+│       │       ├── upload-invoice.types.ts
+│       │       └── index.ts
+├── types/             # Definições de tipos
+└── utils/             # Funções utilitárias
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏗️ Arquitetura MVVM
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+A aplicação segue o padrão Model-View-ViewModel (MVVM) para melhor organização e manutenção do código.
 
-## Deploy on Vercel
+### Model
+- Representa os dados e a lógica de negócios
+- Localizado pela declaração `.model`
+- Gerencia o estado e as regras de negócio
+- Exemplo: `filter.model.ts`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### View
+- Interface do usuário
+- Localizado pela declaração `.view`
+- Componentes puramente visuais
+- Exemplo: `filter.view.tsx`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### ViewModel
+- Ponte entre Model e View
+- Localizado pela declaração `.view-model`
+- Gerencia a lógica de apresentação
+- Transforma dados do Model para a View
+- Exemplo: `filter.viewmodel.ts`
+
