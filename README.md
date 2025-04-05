@@ -14,14 +14,14 @@ Aplicação frontend para gerenciamento de faturas, desenvolvida com Next.js e s
 
 ## 📸 Screenshots
 
-### Página Principal
-![Página Principal](/screenshots/main-page.png)
+### Dashboard
+<img width="1674" alt="Captura de Tela 2025-04-05 às 18 00 43" src="https://github.com/user-attachments/assets/f8e97cba-b69b-41eb-9dc6-4ba3fd5488dd" />
+
+### Biblioteca de Faturas
+<img width="1674" alt="Captura de Tela 2025-04-05 às 18 00 27" src="https://github.com/user-attachments/assets/0772efd1-3292-4884-a172-7f2c83fbcd54" />
 
 ### Modal de Upload
-![Modal de Upload](/screenshots/upload-modal.png)
-
-### Filtros Avançados
-![Filtros Avançados](/screenshots/advanced-filters.png)
+<img width="1672" alt="Captura de Tela 2025-04-05 às 18 01 05" src="https://github.com/user-attachments/assets/b6bdbbf8-efc0-43e5-8609-44c9f7eaf6fb" />
 
 ## 🛠️ Como Rodar
 
@@ -67,6 +67,12 @@ npm run test
 # ou
 yarn test
 ```
+
+
+## 📁 Filtros/SSR
+Filtros implementados 
+Implementado o uso de SSR (Server-Side Rendering) na renderização de páginas usando o servidor, melhorando performance e SEO. Filtros passados na URL são processados pelo backend para consultar a API com precisão, deizando a frontend sem a responsabilidade de fazer mapeamento e filtragem de dados.
+<img width="1328" alt="Captura de Tela 2025-04-05 às 18 01 53" src="https://github.com/user-attachments/assets/1cecf395-b57f-4a1c-a4c1-9deb1229478d" />
 
 ## 📁 Estrutura de Pastas
 
