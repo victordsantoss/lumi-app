@@ -41,15 +41,20 @@ export const useTableModel = ({ tableData }: ITableModelProps): ITableModel => {
       flex: 2,
       headerName: 'Número do cliente',
       renderCell: (params) => (
-        params.row.customer.number
+        <Typography>
+          {params.row?.customer?.number ?? 'N/A'}
+        </Typography>
       ),
+      sortable: false,
     },
     {
       field: 'installationNumber',
       flex: 2,
       headerName: 'Número da instalação',
       renderCell: (params) => (
-        params.row.installationNumber
+        <Typography>
+          {params.row?.installationNumber ?? 'N/A'}
+        </Typography>
       ),
     },
     {
@@ -57,7 +62,9 @@ export const useTableModel = ({ tableData }: ITableModelProps): ITableModel => {
       flex: 2,
       headerName: 'Valor da fatura',
       renderCell: (params) => (
-        formatCurrency(params.row?.invoiceAmount ?? 0)
+        <Typography>
+          {formatCurrency(params.row?.invoiceAmount ?? 0)}
+        </Typography>
       ),
     },
     {
@@ -65,27 +72,38 @@ export const useTableModel = ({ tableData }: ITableModelProps): ITableModel => {
       headerName: 'Qtd de Energia elétrica',
       flex: 2,
       renderCell: (params) => (
-        formatEnergy(params.row.electricalEnergyQuantity)
+        <Typography>
+          {formatEnergy(params.row?.electricalEnergyQuantity ?? 0)}
+        </Typography>
       ),
-
     },
     {
       field: 'invoiceMonth',
       flex: 2,
       headerName: 'Mês da fatura',
-      renderCell: (params) => (
-        <Typography textTransform={'capitalize'}> {format(params.row?.invoiceMonth, 'MMMM yyyy', { locale: ptBR })}</Typography>
-      ),
-      sortable: false,
+      renderCell: (params) => {
 
+        return (
+          <Typography textTransform={'capitalize'}>
+            {params.row?.invoiceMonth ? format(new Date(params.row.invoiceMonth), 'MMMM yyyy', { locale: ptBR }) : 'N/A'}
+          </Typography>
+        )
+      },
+      sortable: false,
     },
     {
       field: 'invoiceDueDate',
       flex: 2,
       headerName: 'Mês de vencimento fatura',
-      renderCell: (params) => (
-        <Typography textTransform={'capitalize'}> {format(params.row?.invoiceDueDate, 'MMMM yyyy', { locale: ptBR })}</Typography>
-      ),
+      renderCell: (params) => {
+
+        return (
+          <Typography textTransform={'capitalize'}>
+            {params.row?.invoiceDueDate ? format(new Date(params.row.invoiceDueDate), 'MMMM yyyy', { locale: ptBR }) : 'N/A'}
+          </Typography>
+        )
+
+      },
       sortable: false,
     },
     {
@@ -95,7 +113,15 @@ export const useTableModel = ({ tableData }: ITableModelProps): ITableModel => {
       renderCell: (params) => (
         <Box>
           <Tooltip title="Visualizar fatura" arrow>
-            <IconButton color="primary" onClick={() => console.log(params.row)}>
+            <IconButton
+              color="primary"
+              onClick={() => {
+                if (params.row?.id) {
+                  console.log(params.row)
+                }
+              }}
+              disabled={!params.row?.id}
+            >
               <PictureAsPdfIcon />
             </IconButton>
           </Tooltip>

@@ -22,10 +22,9 @@ export const TableView = ({ tableData, columns, currentLimit, currentPage, sortM
   return (
     <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 2 }}>
       <DataGrid
-        rows={tableData.data}
+        rows={tableData?.data ?? []}
         columns={columns}
-        rowCount={tableData?.total}
-
+        loading={!tableData}
         initialState={{
           pagination: {
             paginationModel: {

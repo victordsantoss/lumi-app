@@ -19,10 +19,10 @@ export const customListStyles: {
     '&:hover': {
       backgroundColor: 'rgba(216, 209, 190, 0.1)',
       '& .MuiListItemIcon-root': {
-        color: theme.palette.background.default,
+        color: theme.palette.background.paper,
       },
       '& .MuiListItemText-root': {
-        color: theme.palette.background.default,
+        color: theme.palette.background.paper,
       }
     }
   }),
@@ -35,10 +35,10 @@ export const customListStyles: {
     '&:hover': {
       backgroundColor: 'rgba(216, 209, 190, 0.1)',
       '& .MuiListItemIcon-root': {
-        color: theme.palette.background.default,
+        color: theme.palette.background.paper,
       },
       '& .MuiListItemText-root': {
-        color: theme.palette.background.default,
+        color: theme.palette.background.paper,
       }
     }
   }),

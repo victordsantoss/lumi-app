@@ -10,6 +10,7 @@ export const miniDrawerStyles: {
 } = {
   root: {
     display: 'flex',
+    backgroundColor: 'background.paper',
   },
 
   menuButton: (open: boolean) => ({
@@ -37,6 +38,7 @@ export const miniDrawerStyles: {
     flexGrow: 1,
     p: 3,
     mt: 6,
+    backgroundColor: 'background.paper',
   },
 
   logoContainer: (open: boolean) => ({

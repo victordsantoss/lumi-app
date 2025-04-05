@@ -1,4 +1,8 @@
 const nextConfig = {
+  devIndicators: {
+    buildActivity: false,
+    autoPrerender: false,
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.css$/,
