@@ -24,11 +24,11 @@ export default function SummaryCard({ totalCompensatedEnergy, totalElectricalEne
           p: 0,
         }}
       >
-        <SummaryPaper title={'Quantidade de Faturas'} value={totalInvoices} />
-        <SummaryPaper title={'Valor Total das Faturas'} value={totalInvoiceAmount} isCurrency />
-        <SummaryPaper title={'Energia Elétrica Total'} value={totalElectricalEnergy} isEnergy />
-        <SummaryPaper title={'Valor Médio das Faturas'} value={averageInvoiceAmount} isCurrency />
-        <SummaryPaper title={'Energia Comp. Total'} value={totalCompensatedEnergy} isEnergy />
+        <SummaryPaper title={'Quantidade de Faturas'} value={totalInvoices ?? 0} />
+        <SummaryPaper title={'Valor Total das Faturas'} value={totalInvoiceAmount ?? 0} isCurrency />
+        <SummaryPaper title={'Energia Elétrica Total'} value={totalElectricalEnergy ?? 0} isEnergy />
+        <SummaryPaper title={'Valor Médio das Faturas'} value={averageInvoiceAmount ?? 0} isCurrency />
+        <SummaryPaper title={'Energia Comp. Total'} value={totalCompensatedEnergy ?? 0} isEnergy />
       </CardContent>
     </Card>
   );

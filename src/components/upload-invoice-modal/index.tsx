@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { useFile } from './useFile';
+import { useFile } from './file.model';
 
 interface IUploadInvoiceModalProps {
   open: boolean;

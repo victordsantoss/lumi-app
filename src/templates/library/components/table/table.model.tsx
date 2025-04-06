@@ -4,13 +4,11 @@ import { Invoice } from "@/common/models/invoice.model";
 import { formatCurrency, formatEnergy } from "@/common/utils/format";
 import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 import { GridColDef, GridSortModel } from "@mui/x-data-grid";
-import { format } from "date-fns-tz";
-import { ptBR } from "date-fns/locale";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { useEffect, useState } from "react";
 import { PaginatedResponse } from "@/common/dtos/base-pagination.dto";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useFile } from "@/components/upload-invoice-modal/useFile";
+import { useFile } from "@/components/upload-invoice-modal/file.model";
 import { defaultMessages } from "@/common/utils/messages.utils";
 
 export interface ITableModelProps {
@@ -34,7 +32,7 @@ export const useTableModel = ({ tableData }: ITableModelProps) => {
       headerName: 'Número do cliente',
       renderCell: (params) => (
         <Typography>
-          {params.row?.customer?.number ?? 'N/A'}
+          {params.row?.customer?.number ?? defaultMessages.notFound}
         </Typography>
       ),
       sortable: false,
@@ -45,7 +43,7 @@ export const useTableModel = ({ tableData }: ITableModelProps) => {
       headerName: 'Número da instalação',
       renderCell: (params) => (
         <Typography>
-          {params.row?.installationNumber ?? 'N/A'}
+          {params.row?.installationNumber ?? defaultMessages.notFound}
         </Typography>
       ),
     },

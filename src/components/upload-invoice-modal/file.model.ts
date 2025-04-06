@@ -16,28 +16,20 @@ export const useFile = () => {
     },
   });
 
-  function downloadPdf(buffer: Buffer, fileName: string = 'arquivo.pdf'): void {
+  const downloadPdf = async (buffer: ArrayBuffer, fileName: string = 'arquivo.pdf') => {
     try {
       const blob = new Blob([buffer], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      if (link.download !== undefined) {
-        link.setAttribute('href', url);
-        link.setAttribute('download', fileName);
-        link.style.visibility = 'hidden';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }
-    } catch (e) {
-      showAlert(`Error ao baixar o PDF ${fileName}`, 'error');
-      console.error(e)
+      window.open(url, '_blank');
+    } catch (error) {
+      showAlert(`Erro ao baixar o PDF ${fileName}`, 'error');
+      console.error('Erro ao baixar o PDF:', error);
     }
-  }
+  };
 
   return {
     uploadFile,
     isUploading,
     downloadPdf
   };
-}; 
+};
