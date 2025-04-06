@@ -53,23 +53,6 @@ npm run dev
 yarn dev
 ```
 
-### Build
-```bash
-# Crie uma build de produção
-npm run build
-# ou
-yarn build
-```
-
-### Testes
-```bash
-# Execute os testes
-npm run test
-# ou
-yarn test
-```
-
-
 ## 📁 Filtros/SSR
 Filtros implementados 
 Implementado o uso de SSR (Server-Side Rendering) na renderização de páginas usando o servidor, melhorando performance e SEO. Filtros passados na URL são processados pelo backend para consultar a API com precisão, deizando a frontend sem a responsabilidade de fazer mapeamento e filtragem de dados.
