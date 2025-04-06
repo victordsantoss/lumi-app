@@ -16,20 +16,24 @@ export const Charts = ({ data }: IChartsProps) => {
       flex: 1,
       width: '100%'
     }}>
-      <Card sx={{
-        backgroundColor: 'primary.main',
-        flex: 1,
-        width: '50%'
-      }}>
+      <Card
+        elevation={10}
+        sx={{
+          backgroundColor: 'primary.main',
+          flex: 1,
+          width: { xs: '100%', md: '50%' }
+        }}>
         <CardContent>
           <BarChartComponent data={data} />
         </CardContent>
       </Card>
-      <Card sx={{
-        backgroundColor: 'primary.main',
-        flex: 1,
-        width: '50%'
-      }}>
+      <Card
+        elevation={10}
+        sx={{
+          backgroundColor: 'primary.main',
+          flex: 1,
+          width: { xs: '100%', md: '50%' }
+        }}>
         <CardContent>
           <PieChartComponent data={data} />
         </CardContent>

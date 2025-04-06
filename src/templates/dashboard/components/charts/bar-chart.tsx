@@ -44,7 +44,7 @@ export const BarChartComponent = ({ data }: IBarChartProps) => {
 
   return (
     <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', height: 'auto', gap: 2 }}>
-      <Typography variant="h6">Energia Elétrica por Mês</Typography>
+      <Typography variant="h6">Consumo de Energia Elétrica por Mês </Typography>
       <ResponsiveContainer width="100%" height={400}>
         <BarChart
           data={chartData}

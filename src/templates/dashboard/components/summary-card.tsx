@@ -4,7 +4,6 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { IDashboardViewProps } from '../dashboard.types';
-import { useTheme } from '@mui/material/styles';
 import { formatCurrency, formatEnergy } from '@/common/utils/format';
 
 
@@ -14,12 +13,15 @@ export interface ISummaryCardProps extends IDashboardViewProps {
 
 export default function SummaryCard({ totalCompensatedEnergy, totalElectricalEnergy, totalInvoiceAmount, averageInvoiceAmount, totalInvoices }: ISummaryCardProps) {
   return (
-    <Card sx={{ backgroundColor: 'black' }}>
+    <Card
+      elevation={0}
+      sx={{ backgroundColor: 'transparent' }}>
       <CardContent
         sx={{
-          display: { xs: 'block', md: 'flex', },
-          flexDirection: 'row',
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
           gap: 2,
+          p: 0,
         }}
       >
         <SummaryPaper title={'Quantidade de Faturas'} value={totalInvoices} />
@@ -40,7 +42,6 @@ export interface ISummaryPaper {
 }
 
 export const SummaryPaper = ({ title, value, isCurrency, isEnergy }: ISummaryPaper) => {
-  const theme = useTheme();
   const formatValue = () => {
     if (isCurrency) {
       return formatCurrency(value);
@@ -52,13 +53,14 @@ export const SummaryPaper = ({ title, value, isCurrency, isEnergy }: ISummaryPap
   };
 
   return (
-    <Paper sx={{
-      width: '100%',
-      flex: 1,
-      p: 2,
-      backgroundColor: 'primary.main',
-      border: `1px solid ${theme.palette.background.default}`
-    }}>
+    <Paper
+      elevation={10}
+      sx={{
+        width: '100%',
+        flex: 1,
+        p: 2,
+        backgroundColor: 'primary.main'
+      }}>
       <Typography variant="h6">{title}</Typography>
       <Typography variant="h3" fontWeight={700}>{formatValue()}</Typography>
     </Paper>
