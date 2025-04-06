@@ -104,8 +104,6 @@ src/
 │       │       ├── upload-invoice.viewmodel.ts
 │       │       ├── upload-invoice.types.ts
 │       │       └── index.ts
-├── types/             # Definições de tipos
-└── utils/             # Funções utilitárias
 ```
 
 ## 🏗️ Arquitetura MVVM
