@@ -13,6 +13,7 @@ const DashboardViewModel = ({ invoicesData }: IDashboardViewModelProps) => {
   const methods = useDashboardModel(invoicesData)
   return (
     <DashboardView
+      invoices={invoicesData.data}
       {...methods}
     />
 

@@ -1,6 +1,5 @@
 import { Invoice } from '@/common/models/invoice.model';
 import { PaginatedResponse } from '@/common/dtos/base-pagination.dto';
-import { useState } from 'react';
 
 export interface IUserConsumption {
   customerNumber: string;
@@ -9,8 +8,6 @@ export interface IUserConsumption {
 }
 
 export interface IDashboardModel {
-  invoices: Invoice[];
-  setInvoices: (invoices: Invoice[]) => void;
   totalInvoiceAmount: number;
   averageInvoiceAmount: number;
   totalCompensatedEnergy: number;
@@ -55,19 +52,14 @@ const calculateUserConsumptions = (invoices: Invoice[]): IUserConsumption[] => {
 };
 
 export const useDashboardModel = (invoicesData: PaginatedResponse<Invoice>): IDashboardModel => {
-  const [invoices, setInvoices] = useState<Invoice[]>(invoicesData.data);
 
-  const totalInvoiceAmount = calculateTotalInvoiceAmount(invoices);
-  const averageInvoiceAmount = calculateAverageInvoiceAmount(totalInvoiceAmount, invoices.length);
-  const totalCompensatedEnergy = calculateTotalCompensatedEnergy(invoices);
-  const totalElectricalEnergy = calculateTotalElectricalEnergy(invoices);
-  const userConsumptions = calculateUserConsumptions(invoices);
-
-  console.log(userConsumptions);
+  const totalInvoiceAmount = calculateTotalInvoiceAmount(invoicesData.data);
+  const averageInvoiceAmount = calculateAverageInvoiceAmount(totalInvoiceAmount, invoicesData.data.length);
+  const totalCompensatedEnergy = calculateTotalCompensatedEnergy(invoicesData.data);
+  const totalElectricalEnergy = calculateTotalElectricalEnergy(invoicesData.data);
+  const userConsumptions = calculateUserConsumptions(invoicesData.data);
 
   return {
-    invoices,
-    setInvoices,
     totalInvoiceAmount,
     averageInvoiceAmount,
     totalCompensatedEnergy,

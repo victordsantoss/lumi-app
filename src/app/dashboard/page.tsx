@@ -18,7 +18,7 @@ export default async function Dashboard() {
     await apiFetch<InvoicesResponse>(listInvoicesEndpoint, {
       method: 'GET',
       next: {
-        tags: ['list-invoices'],
+        tags: ['list-dashboard-invoices'],
       },
       cache: 'no-cache',
     })

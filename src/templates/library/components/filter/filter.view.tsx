@@ -6,6 +6,7 @@ import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined'
 import { AdvancedFilter } from "./advanced-filter";
 import { FilterChip } from "@/components/filter-chip";
 import { UploadInvoiceModal } from "@/components/upload-invoice-modal";
+import { revalidateLibraryInvoices } from "@/common/actions/revalidate-invoices";
 
 interface IFilterViewProps {
   inputValues: IInputValues
@@ -153,6 +154,7 @@ export const FilterView = ({
       <UploadInvoiceModal
         open={uploadModalOpen}
         onClose={() => setUploadModalOpen(false)}
+        revalidate={revalidateLibraryInvoices}
       />
     </Box>
   );

@@ -17,7 +17,7 @@ export const DashboardView = ({
 }: IDashboardViewProps) => {
 
   if (!invoices?.length) {
-    return <EmptyInvoices onAddFirstInvoice={() => { }} />
+    return <EmptyInvoices />
   }
 
   return (

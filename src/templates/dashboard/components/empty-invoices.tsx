@@ -1,12 +1,17 @@
 import { Box, Button, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import InfoIcon from '@mui/icons-material/Info';
+import { UploadInvoiceModal } from '@/components/upload-invoice-modal';
+import { useState } from 'react';
+import { revalidateDashboardInvoices } from '@/common/actions/revalidate-invoices';
 
-interface IEmptyInvoicesProps {
-  onAddFirstInvoice: () => void;
-}
 
-export const EmptyInvoices = ({ onAddFirstInvoice }: IEmptyInvoicesProps) => {
+export const EmptyInvoices = () => {
+  const [uploadModalOpen, setUploadModalOpen] = useState<boolean>(false)
+  const onAddFirstInvoice = () => {
+    setUploadModalOpen(true)
+  }
+
   return (
     <Box
       sx={{
@@ -44,6 +49,11 @@ export const EmptyInvoices = ({ onAddFirstInvoice }: IEmptyInvoicesProps) => {
       >
         Adicionar Primeira Fatura
       </Button>
+      <UploadInvoiceModal
+        open={uploadModalOpen}
+        onClose={() => setUploadModalOpen(false)}
+        revalidate={revalidateDashboardInvoices}
+      />
     </Box>
   );
 }; 
