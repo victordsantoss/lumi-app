@@ -11,7 +11,8 @@ export const miniDrawerStyles: {
   root: {
     display: 'flex',
     backgroundColor: 'background.paper',
-    overflowX: 'auto'
+    overflowX: 'auto',
+    height: '100vh'
   },
 
   menuButton: (open: boolean) => ({
