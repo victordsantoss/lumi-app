@@ -79,10 +79,15 @@ Implementado o uso de SSR (Server-Side Rendering) na renderização de páginas 
 
 ```
 src/
-├── components/         # Componentes reutilizáveis
+├── app/               # Páginas da aplicação
+├── commom/            # Auxiliadores comuns para o projeto
+│        ├── actions/  # Revalidadores para o SSR
+│        ├── dtos/     # Data Transfer Objects comuns 
+│        ├── models/   # Imagens das entidades 
+│        └── utils/    # Funções auxiliadoras comuns no projeto
+├── components/        # Componentes reutilizáveis
 ├── configs/           # Configurações da aplicação
 ├── contexts/          # Contextos do React
-├── hooks/             # Hooks personalizados
 ├── services/          # Serviços de API
 ├── templates/         # Templates de páginas
 │   └── library/       # Template da biblioteca
