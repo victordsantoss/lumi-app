@@ -4,14 +4,14 @@ import { Invoice } from "@/common/models/invoice.model";
 import { formatCurrency, formatEnergy } from "@/common/utils/format";
 import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 import { GridColDef, GridSortModel } from "@mui/x-data-grid";
-import { format } from "date-fns";
+import { format } from "date-fns-tz";
 import { ptBR } from "date-fns/locale";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { useEffect, useState } from "react";
 import { PaginatedResponse } from "@/common/dtos/base-pagination.dto";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useFile } from "@/components/upload-invoice-modal/useFile";
-
+import { defaultMessages } from "@/common/utils/messages.utils";
 
 export interface ITableModelProps {
   tableData: PaginatedResponse<Invoice>
@@ -72,12 +72,11 @@ export const useTableModel = ({ tableData }: ITableModelProps) => {
     {
       field: 'invoiceMonth',
       flex: 2,
-      headerName: 'Mês da fatura',
+      headerName: 'Data da fatura',
       renderCell: (params) => {
-
         return (
           <Typography textTransform={'capitalize'}>
-            {params.row?.invoiceMonth ? format(new Date(params.row.invoiceMonth), 'MMMM yyyy', { locale: ptBR }) : 'N/A'}
+            {params.row?.invoiceMonth ?? defaultMessages.notFound}
           </Typography>
         )
       },
@@ -86,12 +85,12 @@ export const useTableModel = ({ tableData }: ITableModelProps) => {
     {
       field: 'invoiceDueDate',
       flex: 2,
-      headerName: 'Mês de vencimento fatura',
+      headerName: 'Data de vencimento fatura',
       renderCell: (params) => {
 
         return (
           <Typography textTransform={'capitalize'}>
-            {params.row?.invoiceDueDate ? format(new Date(params.row.invoiceDueDate), 'MMMM yyyy', { locale: ptBR }) : 'N/A'}
+            {params.row?.invoiceDueDate ?? defaultMessages.notFound}
           </Typography>
         )
 

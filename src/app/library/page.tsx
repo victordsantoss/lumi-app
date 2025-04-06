@@ -31,6 +31,8 @@ export default async function Library({
 
   const invoicesData = handleApiError<IInvoiceResponseDto>(invoices);
 
+  console.log("invoicesData", invoicesData)
+
   return <LibraryViewModel invoicesData={invoicesData} />;
 }
 
