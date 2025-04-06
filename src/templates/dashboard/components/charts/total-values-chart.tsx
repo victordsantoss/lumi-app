@@ -4,12 +4,11 @@ import { Invoice } from "@/common/models/invoice.model";
 import { Box, Typography } from "@mui/material";
 
 
-
-export interface IPieChartProps {
+export interface ITotalValuesChartProps {
   data: Invoice[];
 }
 
-export const PieChartComponent = ({ data }: IPieChartProps) => {
+export const TotalValuesChart = ({ data }: ITotalValuesChartProps) => {
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
 
   const totalData = data.reduce((acc, invoice) => {

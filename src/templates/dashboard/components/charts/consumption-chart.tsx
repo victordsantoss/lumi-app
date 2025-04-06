@@ -5,11 +5,11 @@ import { Box, Typography } from '@mui/material';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer } from 'recharts';
 import { Invoice } from '@/common/models/invoice.model';
 
-export interface IBarChartProps {
+export interface IConsumptionChartProps {
   data: Invoice[];
 }
 
-export const BarChartComponent = ({ data }: IBarChartProps) => {
+export const ConsumptionChart = ({ data }: IConsumptionChartProps) => {
   const monthsInOrder = [
     'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
     'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'

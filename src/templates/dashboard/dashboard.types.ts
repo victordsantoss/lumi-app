@@ -1,4 +1,5 @@
 import { Invoice } from "@/common/models/invoice.model";
+import { IUserConsumption } from "./dashboard.model";
 
 export interface IDashboardViewProps {
   totalInvoiceAmount: number;
@@ -7,4 +8,5 @@ export interface IDashboardViewProps {
   totalElectricalEnergy: number;
   invoices?: Invoice[];
   isLoading?: boolean;
+  userConsumptions: IUserConsumption[];
 }

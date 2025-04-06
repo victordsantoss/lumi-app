@@ -50,7 +50,7 @@ export const UploadInvoiceModal: React.FC<IUploadInvoiceModalProps> = ({
   };
 
   return (
-    <Dialog open={open} onClose={onClose} sx={{ minWidth: 1000, margin: 'auto', position: 'absolute' }}>
+    <Dialog open={open} onClose={onClose}>
       <DialogTitle>
         <Typography variant="h4" fontWeight={600} sx={(theme) => ({ color: theme.palette.primary.dark })}>
           Importar Fatura

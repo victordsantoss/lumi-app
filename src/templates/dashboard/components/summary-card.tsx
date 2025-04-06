@@ -7,7 +7,7 @@ import { IDashboardViewProps } from '../dashboard.types';
 import { formatCurrency, formatEnergy } from '@/common/utils/format';
 
 
-export interface ISummaryCardProps extends IDashboardViewProps {
+export interface ISummaryCardProps extends Partial<IDashboardViewProps> {
   totalInvoices: number;
 }
 
