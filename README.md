@@ -15,10 +15,11 @@ Aplicação frontend para gerenciamento de faturas, desenvolvida com Next.js e s
 ## 📸 Screenshots
 
 ### Dashboard
-<img width="1674" alt="Captura de Tela 2025-04-05 às 18 00 43" src="https://github.com/user-attachments/assets/f8e97cba-b69b-41eb-9dc6-4ba3fd5488dd" />
+<img width="1672" alt="Captura de Tela 2025-04-06 às 15 06 03" src="https://github.com/user-attachments/assets/7fbd1488-42e6-455d-bd42-caee40c0548a" />
+<img width="1667" alt="Captura de Tela 2025-04-06 às 15 10 26" src="https://github.com/user-attachments/assets/f30007ab-2138-42b2-bc46-80068846797a" />
 
 ### Biblioteca de Faturas
-<img width="1674" alt="Captura de Tela 2025-04-05 às 18 00 27" src="https://github.com/user-attachments/assets/0772efd1-3292-4884-a172-7f2c83fbcd54" />
+<img width="1674" alt="Captura de Tela 2025-04-06 às 15 05 47" src="https://github.com/user-attachments/assets/f43439f4-6b0c-4625-a4fc-6724945dd476" />
 
 ### Modal de Upload
 <img width="1672" alt="Captura de Tela 2025-04-05 às 18 01 05" src="https://github.com/user-attachments/assets/b6bdbbf8-efc0-43e5-8609-44c9f7eaf6fb" />
