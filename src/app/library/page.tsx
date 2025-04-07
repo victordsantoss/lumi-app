@@ -18,15 +18,13 @@ export default async function Library({
   const listInvoicesEndpoint = `/invoice`;
 
   const [invoices] = await Promise.all([
-    await apiFetch<InvoicesResponse>(listInvoicesEndpoint, {
+    apiFetch<InvoicesResponse>(listInvoicesEndpoint, {
       method: 'GET',
       next: {
         tags: ['list-dashboard-invoices'],
       },
       cache: 'no-cache',
-    },
-      searchParams
-    )
+    }, searchParams)
   ])
 
   const invoicesData = handleApiError<IInvoiceResponseDto>(invoices);

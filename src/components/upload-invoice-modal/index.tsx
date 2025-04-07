@@ -14,17 +14,16 @@ import {
 import React, { useState } from 'react';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useFile } from './file.model';
+import { revalidateDashboardInvoices, revalidateLibraryInvoices } from '@/common/actions/revalidate-invoices';
 
 interface IUploadInvoiceModalProps {
   open: boolean;
   onClose: () => void;
-  revalidate: () => Promise<void>;
 }
 
 export const UploadInvoiceModal: React.FC<IUploadInvoiceModalProps> = ({
   open,
   onClose,
-  revalidate
 }) => {
   const { isUploading, uploadFile } = useFile();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -40,7 +39,8 @@ export const UploadInvoiceModal: React.FC<IUploadInvoiceModalProps> = ({
     if (selectedFile) {
       uploadFile(selectedFile);
       setSelectedFile(null);
-      await revalidate()
+      await revalidateLibraryInvoices();
+      await revalidateDashboardInvoices();
       onClose();
     }
   };

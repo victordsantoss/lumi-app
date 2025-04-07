@@ -3,20 +3,17 @@ import { IFetchErrorResponse, IFetchSuccessResponse } from '@/common/dtos/fetch.
 export const apiFetch = async <T>(
   endpoint: string,
   options: RequestInit = {},
-  queryParams?: Record<string, string | number | boolean | undefined>,
+  queryParams: Record<string, string | number | boolean | undefined> = {},
 ): Promise<T> => {
   const { body, ...rest } = options
 
   const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}${endpoint}`)
 
-
-  if (queryParams) {
-    Object.entries(queryParams).forEach(([key, value]) => {
-      if (value !== undefined) {
-        url.searchParams.append(key, String(value))
-      }
-    })
-  }
+  Object.entries(queryParams).forEach(([key, value]) => {
+    if (value !== undefined) {
+      url.searchParams.append(key, String(value))
+    }
+  })
 
   const response = await fetch(url.toString(), {
     headers: {

@@ -58,7 +58,7 @@ export const useTableModel = ({ tableData }: ITableModelProps) => {
       ),
     },
     {
-      field: 'eletricalEnergyQuantity',
+      field: 'electricalEnergyQuantity',
       headerName: 'Qtd de Energia elétrica',
       flex: 2,
       renderCell: (params) => (

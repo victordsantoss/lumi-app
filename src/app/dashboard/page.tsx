@@ -11,17 +11,16 @@ export type InvoicesResponse =
   | IFetchErrorResponse
 
 export default async function Dashboard() {
-
   const listInvoicesEndpoint = `/invoice`;
 
   const [invoices] = await Promise.all([
-    await apiFetch<InvoicesResponse>(listInvoicesEndpoint, {
+    apiFetch<InvoicesResponse>(listInvoicesEndpoint, {
       method: 'GET',
       next: {
         tags: ['list-dashboard-invoices'],
       },
       cache: 'no-cache',
-    })
+    }, {})
   ])
 
   const invoicesData = handleApiError<IInvoiceResponseDto>(invoices);
