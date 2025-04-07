@@ -154,7 +154,7 @@ export const FilterView = ({
       <UploadInvoiceModal
         open={uploadModalOpen}
         onClose={() => setUploadModalOpen(false)}
-        revalidate={revalidateLibraryInvoices}
+        revalidate={async () => await revalidateLibraryInvoices()}
       />
     </Box>
   );

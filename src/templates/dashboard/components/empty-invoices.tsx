@@ -52,7 +52,7 @@ export const EmptyInvoices = () => {
       <UploadInvoiceModal
         open={uploadModalOpen}
         onClose={() => setUploadModalOpen(false)}
-        revalidate={revalidateDashboardInvoices}
+        revalidate={async () => await revalidateDashboardInvoices()}
       />
     </Box>
   );
