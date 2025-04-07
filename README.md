@@ -34,8 +34,7 @@ Aplicação frontend para gerenciamento de faturas, desenvolvida com Next.js e s
 ### Instalação
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/lumi-frontend.git
-
+git clone git@github.com:victordsantoss/lumi-app.git
 # Entre no diretório
 cd lumi-frontend
 
