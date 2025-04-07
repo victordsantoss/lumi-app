@@ -38,6 +38,10 @@ git clone git@github.com:victordsantoss/lumi-app.git
 # Entre no diretório
 cd lumi-frontend
 
+
+# Copie o modelo de variáveis de ambiente
+cp .env.example .env
+
 # Instale as dependências
 npm install
 # ou
