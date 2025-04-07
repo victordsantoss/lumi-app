@@ -38,9 +38,8 @@ git clone git@github.com:victordsantoss/lumi-app.git
 # Entre no diretório
 cd lumi-frontend
 
-
-# Copie o modelo de variáveis de ambiente
-cp .env.example .env
+# Crie e copie o modelo de variáveis de ambiente
+NEXT_PUBLIC_API_URL=http://localhost:3001
 
 # Instale as dependências
 npm install
@@ -114,6 +113,3 @@ A aplicação segue o padrão Model-View-ViewModel (MVVM) para melhor organizaç
 - Gerencia a lógica de apresentação
 - Transforma dados do Model para a View
 - Exemplo: `filter.viewmodel.ts`
-
-## 🏗️ Exemplo de .env
-NEXT_PUBLIC_API_URL=http://localhost:3001
